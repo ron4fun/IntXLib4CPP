@@ -9,38 +9,38 @@ Code Example
 
 Here is a sample of code which uses `IntX` to calculate 42 in power 1048576 (which is 2^20 (1 shl 20)):
     
+```c++
+#include <iostream>
+#include <Windows.h>
+#include "Settings\IntXGlobalSettings.h"
+#include "IntX.h"
 
-	#include <iostream>
-	#include <Windows.h>
-	#include "Settings\IntXGlobalSettings.h"
-	#include "IntX.h"
-	
-	void Calc()
-	{
-		uint32_t valA, valB;
-		double Delta;
-	
-		valA = GetTickCount();
-		IntX::Pow(42, 1048576);
-		valB = GetTickCount();
-		Delta = (valB - valA) / 1000;
-	
-		cout << Delta << endl;
-	}
+void Calc()
+{
+	uint32_t valA, valB;
+	double Delta;
 
-	int main()
-	{
-		Calc();
+	valA = GetTickCount();
+	IntX::Pow(42, 1048576);
+	valB = GetTickCount();
+	Delta = (valB - valA) / 1000;
 
-		system("PAUSE");
-	
-		TIntX::getGlobalSettings()->setMultiplyMode(MultiplyMode::mmClassic);
-	
-		Calc();
-		
-	    return 0;
-	} // end main
+	cout << Delta << endl;
+}
 
+int main()
+{
+	Calc();
+
+	system("PAUSE");
+
+	TIntX::getGlobalSettings()->setMultiplyMode(MultiplyMode::mmClassic);
+
+	Calc();
+
+    return 0;
+} // end main
+```
 
     First 'Calc()' call uses fast multiplication implementation (which is default), 
     second, classic one. On my machine (Windows 10, Intel Core i5 2.20 GHz, 
