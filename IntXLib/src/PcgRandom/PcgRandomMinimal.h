@@ -7,7 +7,7 @@
 typedef unsigned long long UInt64;
 typedef unsigned int UInt32;
 
-#include <time.h>
+#include <chrono>
 #include <cstdlib>
 
 using namespace std;
@@ -50,7 +50,7 @@ private:
 
 	static UInt64 GetInitState(UInt64 &initSeq)
 	{
-		UInt64 result = time(0);
+		UInt64 result = chrono::duration_cast<chrono::milliseconds>(chrono::system_clock::now().time_since_epoch()).count();
 
 		initSeq = GetInitSeq(result) * (long long)(1000000);
 
